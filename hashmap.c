@@ -45,10 +45,9 @@ void insertMap(HashMap * map, char * key, void * value) {
   int pos = hash(key,map->capacity);
   map->size += 1;
   //Pregunta 4
-  if(map->capacity *0.7 <= map->size)
+  if(map->capacity * 0.7 <= map->size)
     enlarge(map);
-  map->buckets[pos]->key = key;
-  map->buckets[pos]->value = value;
+  map->buckets[pos] = createPair(key,value);
 }
 
 void enlarge(HashMap * map) {

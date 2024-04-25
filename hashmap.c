@@ -92,7 +92,7 @@ HashMap * createMap(long capacity) {
 }
 
 void eraseMap(HashMap * map,  char * key) {    
-  long i = 0;
+  long i = hash(key , map->capacity);
   while(map->buckets[i]->key == key){
     i++;
   }

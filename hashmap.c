@@ -46,7 +46,7 @@ void insertMap(HashMap * map, char * key, void * value) {
   {
     return;
   }
-  if (map->capacity * 0.7 == map->size)
+  if (map->capacity == map->size)
   {
     enlarge(map);
   }

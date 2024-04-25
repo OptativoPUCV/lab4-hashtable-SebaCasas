@@ -5,6 +5,8 @@
 #include <ctype.h>
 #include "hashmap.h"
 
+void enlarge(HashMap * );
+void insertMap(HashMap * , char * , void * );
 
 typedef struct HashMap HashMap;
 int enlarge_called=0;
@@ -40,13 +42,27 @@ int is_equal(void* key1, void* key2){
 
 
 void insertMap(HashMap * map, char * key, void * value) {
-
-
+  int pos = key % map->capacity;
+  map->size += 1;
+  //Pregunta 4
+  if(map->capacity *0.7 <= map->size)
+    enlarge(map);
+  map->buckets[pos]->key = key;
+  map->buckets[pos]->value = value;
 }
 
 void enlarge(HashMap * map) {
-    enlarge_called = 1; //no borrar (testing purposes)
-
+  enlarge_called = 1; //no borrar (testing purposes)
+  Pair** old_array = map->buckets;
+  int old_capacity = map->capacity;
+  map->capacity *= 2;
+  Pair** nuevo_hashArray = (Pair**)malloc(map->capacity * sizeof(Pair*));
+  map->buckets = nuevo_hashArray;
+  for(int i = 0; i < old_capacity; i++){
+    if(old_array[i] != NULL){
+      insertMap(map, old_array[i]->key, old_array[i]->value);
+    }
+  }
 
 }
 

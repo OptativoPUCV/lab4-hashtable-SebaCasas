@@ -109,14 +109,14 @@ Pair * searchMap(HashMap * map,  char * key) {
     map->current = pos;
     return map->buckets[pos];
   }
-  /*long i = 0;
+  long i = 0;
   bool flag = false;
-  while( map->buckets[pos+i] == NULL){
+  while( map->buckets[pos+i] != NULL){
     if(map->buckets[pos+i]->key == key) flag = true;
     i++;
   }
-  if(flag) return map->buckets[pos+i];
-  return NULL;*/
+  if(flag) return map->buckets[pos+i-1];
+  return NULL;
 }
 
 Pair * firstMap(HashMap * map) {

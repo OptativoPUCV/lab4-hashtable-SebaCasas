@@ -193,3 +193,9 @@ hashmap.c:108:16: error: assignment to ‘long int’ from ‘Pair *’ makes in
 cc1: all warnings being treated as errors
 Compilation failed
 cd39953
+Sat 27 Apr 2024 09:31:55 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  10|3
+total_score: 40/70
+617b169

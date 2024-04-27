@@ -60,6 +60,7 @@ void insertMap(HashMap * map, char * key, void * value) {
       map->size += 1;
       map->buckets[pos] = createPair(key,value);
       map->current = pos;
+      break;
     }
     pos = (pos + 1) % map->capacity;
     if (pos == original_pos) {
@@ -114,6 +115,7 @@ void eraseMap(HashMap * map,  char * key) {
       map->size -= 1;
       map->buckets[pos]->key = NULL;
       map->buckets[pos]->value = NULL;
+      break;
     }
     pos = (pos + 1) % map->capacity;
     if (pos == original_pos) {

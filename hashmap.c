@@ -112,6 +112,7 @@ Pair * searchMap(HashMap * map,  char * key) {
   while (map->buckets[pos] != NULL) {
     // Comprobar si la clave coincide
     if (strcmp(map->buckets[pos]->key, key) == 0) {
+      map->current = pos;
       return map->buckets[pos]; // Se encontró la clave
     }
 
@@ -125,7 +126,7 @@ Pair * searchMap(HashMap * map,  char * key) {
       break;
     }
   }
-
+  map->current = pos;
   // La clave no está presente en el mapa
   return NULL;
   }

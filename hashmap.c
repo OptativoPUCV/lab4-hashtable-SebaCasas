@@ -5,8 +5,10 @@
 #include <ctype.h>
 #include "hashmap.h"
 
+#include <stdbool.h>
 void enlarge(HashMap * );
 void insertMap(HashMap * , char * , void * );
+Pair * firstMap(HashMap *);
 
 typedef struct HashMap HashMap;
 int enlarge_called=0;
@@ -102,9 +104,15 @@ void eraseMap(HashMap * map,  char * key) {
 }
 
 Pair * searchMap(HashMap * map,  char * key) {   
-
-
-    return NULL;
+  long pos = hash(key, map->capacity);
+  long i = 0;
+  bool flag = false;
+  while( map->buckets[pos+i] == NULL){
+    if(map->buckets[pos+i]->key == key) flag = true;
+    i++;
+  }
+  if(flag) return map->buckets[pos+i];
+  return NULL;
 }
 
 Pair * firstMap(HashMap * map) {

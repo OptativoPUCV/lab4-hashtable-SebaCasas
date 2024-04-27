@@ -282,3 +282,8 @@ hashmap.c:98:29: error: ‘pos’ undeclared (first use in this function); did y
 hashmap.c:98:29: note: each undeclared identifier is reported only once for each function it appears in
 Compilation failed
 fcd143d
+Sat 27 Apr 2024 09:47:45 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  0|0
+fb04b45

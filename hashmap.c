@@ -110,9 +110,9 @@ Pair * searchMap(HashMap * map,  char * key) {
     return map->buckets[pos];
   }
   long i = 0;
-  bool flag = false;
+  //bool flag = false;
   while( map->buckets[pos+i] != NULL){
-    if(map->buckets[pos+i]->key == key) flag = true;
+    //if(map->buckets[pos+i]->key == key) flag = true;
     i++;
   }
   return map->buckets[pos+i-1];

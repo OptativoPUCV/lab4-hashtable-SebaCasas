@@ -270,3 +270,15 @@ Sat 27 Apr 2024 09:45:42 PM UTC:
  tests:  10|3
 total_score: 40/70
 db2e4f3
+Sat 27 Apr 2024 09:47:35 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘eraseMap’:
+hashmap.c:98:29: error: ‘pos’ undeclared (first use in this function); did you mean ‘pow’?
+   98 |   while(strcmp(map->buckets[pos]->key, key) == 0){
+      |                             ^~~
+      |                             pow
+hashmap.c:98:29: note: each undeclared identifier is reported only once for each function it appears in
+Compilation failed
+fcd143d

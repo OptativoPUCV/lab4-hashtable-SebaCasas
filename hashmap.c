@@ -105,9 +105,30 @@ void eraseMap(HashMap * map,  char * key) {
 
 Pair * searchMap(HashMap * map,  char * key) {   
   long pos = hash(key, map->capacity);
-  map->current = pos;
-  return map->buckets[pos];
-}
+  long original_pos = pos;
+  int collisions = 0;
+
+  // Buscar en el bucket actual y en los siguientes (si hay colisiones)
+  while (map->buckets[pos] != NULL) {
+    // Comprobar si la clave coincide
+    if (strcmp(map->buckets[pos]->key, key) == 0) {
+      return map->buckets[pos]; // Se encontró la clave
+    }
+
+    // Avanzar al siguiente bucket (manejo de colisiones)
+    pos = (original_pos + collisions * collisions) % map->capacity;
+    collisions++;
+
+    // Si hemos revisado todos los buckets y no se ha encontrado la clave
+    // entonces la clave no está presente en el mapa
+    if (pos == original_pos) {
+      break;
+    }
+  }
+
+  // La clave no está presente en el mapa
+  return NULL;
+  }
 
 Pair * firstMap(HashMap * map) {
   if (map == NULL || map->buckets == NULL) {

@@ -95,7 +95,7 @@ HashMap * createMap(long capacity) {
 
 void eraseMap(HashMap * map,  char * key) {    
   long i = hash(key , map->capacity);
-  while(strcmp(map->buckets[i]->key, key) == 0){
+  while(map->buckets[i]->key == key){
     i++;
   }
   map->buckets[i]->key = NULL;
@@ -103,33 +103,34 @@ void eraseMap(HashMap * map,  char * key) {
   map->size -= 1;
 }
 
-Pair * searchMap(HashMap * map,  char * key) {   
+Pair * searchMap(HashMap * map, char * key) {
   long pos = hash(key, map->capacity);
   long original_pos = pos;
-  int collisions = 0;
 
   // Buscar en el bucket actual y en los siguientes (si hay colisiones)
   while (map->buckets[pos] != NULL) {
     // Comprobar si la clave coincide
     if (strcmp(map->buckets[pos]->key, key) == 0) {
-      map->current = pos;
-      return map->buckets[pos]; // Se encontró la clave
+        // Actualizar el atributo current
+        map->current = pos;
+        return map->buckets[pos]; // Se encontró la clave
     }
 
     // Avanzar al siguiente bucket (manejo de colisiones)
-    pos = (original_pos + collisions * collisions) % map->capacity;
-    collisions++;
+    pos = (pos + 1) % map->capacity;
 
     // Si hemos revisado todos los buckets y no se ha encontrado la clave
     // entonces la clave no está presente en el mapa
     if (pos == original_pos) {
-      break;
+        break;
     }
   }
-  map->current = pos;
+
   // La clave no está presente en el mapa
+  // Actualizar el atributo current con la última posición revisada
+  map->current = pos;
   return NULL;
-  }
+}
 
 Pair * firstMap(HashMap * map) {
   if (map == NULL || map->buckets == NULL) {
